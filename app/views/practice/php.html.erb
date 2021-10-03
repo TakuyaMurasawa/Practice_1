@@ -1,0 +1,198 @@
+p//if文
+<?php
+$name = "void";
+if($name){
+    echo "";
+}elseif(){
+    echo "";
+}else{
+    echo "";
+}
+?>
+
+//switch文
+<?php 
+$value = "";
+switch($value){
+    case 1:
+        echo "";
+        break;
+
+    case 2:
+        echo "";
+        break;
+
+    case 3:
+        echo "";  
+        break;
+
+    default:
+    echo "";
+    break;  
+}
+?>
+
+//配列
+<?php
+$names = array("A","B","C");
+                //0,1,2
+echo $names[0]   //A
+
+$names[] = "D";  //末尾に値を追加
+echo $names[3]  //D
+
+$names[1] = "β";    //配列1の値を上書き
+echo $names[1]  //β
+
+?>
+//連想配列
+<?php
+
+$scores = array(
+    "一番"　=> 1,
+    "二番" => 2,
+    "三番" => 3
+);
+
+echo $scores["三番"];//3
+
+?>
+
+for文
+<?php
+for($i=1;$i<=100;$i++){
+    echo $i."<br>";//縦に1~100が羅列　※<br>ない場合横に羅列
+}
+?>
+
+<?php
+    for ($i = 1; $i <=1000; $i++) {
+      echo $i."<br>";　//➀
+       if ($i>500) { //なぜ500この等式でも含まれるのか
+         break;
+       }
+      //➁
+    }                         //1~501を羅列　,　➀の文を➁に持ってきた場合、1~500を羅列
+ ?>
+
+ <?php
+ for($i=1;$i<=10;$i++){
+     if($i%3==0){
+         continue;
+     }
+     echo $i;
+ }                            //1~10の三の倍数以外の数宇を羅列
+ ?>
+//繰り返す回数がわかってる場合　=>　for文
+
+
+
+
+<?php
+$i = 2　                           //➀初期化
+while($i <=100){                   //➁ループ条件　値が100になるまで
+    echo $i."<br>";                //➂繰り返す処理　縦に2~100のうち偶数だけを縦羅列
+    $i+=2;                         
+    //➃変数の更新　この場合偶数羅列
+}
+?>
+
+<?php
+$i = 0;
+ 
+while(true){ //trueまたは1と書くと無限ループ
+    echo $i."<br>";
+ 
+    $i++; //変化式
+ 
+    if($i >= 4){
+        break;　//ループを強制終了//0,1,2,3
+    }
+ 
+}
+?>
+//繰り返す回数が不明瞭な場合　=> while文
+
+<?php
+$scores = array(
+    "一番"　=> 1,
+    "二番" => 2,
+    "三番" => 3
+);
+
+foreach($scores as $key => $value){
+    echo $key."は".$value."です。";   //一番は１位です。二番は2位です。三番は3位です。の順番に羅列
+    //それぞれを変数化することにより文章にしやすくする。
+}
+
+echo strlen('abcd'); //4
+
+$names = array("A","B","C");
+echo count($names); //3
+
+echo rand(1,4) //1~4のランダムの数字を羅列
+
+//関数の作成
+function plus($A,$B){
+//関数自作　関数名(使用可能な変数(仮引数))
+    echo $A+$B;
+}
+
+plus(1,2);  //3
+
+//戻り値
+function plus($c,$d){
+    return $c+$d;　　　　
+}
+
+$CD = plus(3,4);　　　　　//上記の処理で返ってきた答えに、変数名を与えるための処理
+echo $CD        //7
+?>
+
+
+
+<form method = POST action = aaa.php>
+    <select name = "age">
+<?php 
+    for($i=6;$i<=100;$i++){
+    echo "<option value ='{$i}'>{$i}</option>";
+    }                            //6~100までを選べるようになる(数字の選択肢の省略可
+?>　　　　　　　　　　　　　　
+
+<?php$types = array(A,B,C);?>
+<select name = "category">
+<option value ="未選択">選択してください</option>
+<?php
+    foreach($types as $type){
+    echo "<option value='{$type}'>{$type}</option>";
+    }　　　　　　　　　　　　　　　//A,B,Cから選べるようになる(文字列の羅列の省略可
+?>
+</form>
+
+aaa.php側での作業
+<?php echo $_POST[]; ?>            //[]内に上記に記載のnameを記載
+
+
+
+<?php
+$menus = array(
+    "Curry" => 100,
+    "Pasta" => 300,
+    "Coffee" => 200
+);
+
+$totalPrice = 0;        //合計金額の変数を実装
+$maxPrice = 0;　　　　　 //最高金額の変数を実装
+$maxName = "";          //最高金額のメニューの変数を実装
+foreach($menus as $name => $price){
+    
+    $totalPrice += $price;          //$totalPriceに繰り返し処理で$priceが次々足されていく
+
+    if($maxPrice < $price){         //上から順番にtrueされる度に繰り返し処理されていく
+        $maxPrice = $price;
+        $maxName = $name;
+    }
+
+}
+
+?>
